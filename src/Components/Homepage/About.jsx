@@ -1,14 +1,45 @@
+import  { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 const About = () => {
+    const textRef = useRef(0);
+
+    useEffect(() => {
+      if (textRef.current) {
+        gsap.from(textRef.current, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.inOut',
+          delay: 0.6,
+          onComplete: () => {
+            gsap.to(textRef.current, { opacity: 1, y: 0 }); 
+          }
+        });
+      }
+  
+  
+      gsap.from('.gsap-active', {
+        x: -50,
+        y:-23,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.inOut',
+        delay: 0.3,
+        onComplete: () => {
+          gsap.to('.gsap-active', { opacity: 1, y: 0 }); 
+        }
+      });
+    },  []);
   return (
     <>
     
     <div className="xl:w-1/2 mx-12  w-11/12 ">
-      <h1 role="heading" tabIndex="0" className="text-6xl font-bold 2xl:leading-10   leading-0 sm:text-center text-gray-800 dark:text-gray-600">Touching hundreds of lives</h1>
+      <h1 role="heading" tabIndex="0" ref={textRef} className="text-6xl font-bold 2xl:leading-10   leading-0 sm:text-center text-gray-800 dark:text-gray-600">Touching hundreds of lives</h1>
       <h2 role="contentinfo" tabIndex="0" className="text-base leading-normal sm:text-center justify-center text-gray-600 dark:text-gray-400 mt-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text Lorem Ipsum is simply dummy text of the printing</h2>
   </div>
   <div className="2xl:px-20 lg:px-12  mb-12 px-4 flex overflow-scroll flex-wrap items-start mt-4">
       <div className="mt-24">
-          <div className="flex items-end">
+          <div className="flex gsap-active items-end">
               <img tabIndex="0" src="https://i.ibb.co/kBgtHK6/Rectangle-5.png" alt="girl with blue background" className="w-20 h-20 rounded-lg mr-6" />
               <img tabIndex="0" src="https://i.ibb.co/9nLBtjx/Rectangle-3.png" alt="guy winking" className="w-48 h-36 rounded-lg" />
           </div>
@@ -27,7 +58,7 @@ const About = () => {
               <img tabIndex="0" src="https://i.ibb.co/2Yj51CY/Rectangle-13.png" alt="guy with glasses" className="w-20 h-20 rounded-lg ml-6 object-cover object-fit" />
           </div>
       </div>
-      <div className="mt-14 ml-6">
+      <div className="mt-14 gsap-active ml-6">
           <div className="lg:flex">
               <div>
                   <img tabIndex="0" src="https://i.ibb.co/bWGVSkP/Rectangle-10.png" alt="group of friends" className="w-96 h-72 rounded-lg object-center object-fit" />
