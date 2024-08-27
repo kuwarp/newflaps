@@ -13,7 +13,7 @@ const Homepage = () => {
 <Services/>
 <ClientSection/>
 <Feedback/>
-<Subscribe/>
+{/* <Subscribe/> */}
     </div>
   )
 }
